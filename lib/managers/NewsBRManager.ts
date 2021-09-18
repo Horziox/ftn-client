@@ -2,7 +2,7 @@ import axios from 'axios';
 
 import { ClientConfig } from '../client/Client';
 import Auth from '../struct/Auth';
-import BRNews from '../struct/BRNews'
+import BRNews from '../struct/NewsBR';
 
 export default class BRNewsManager {
     private auth: Auth;
