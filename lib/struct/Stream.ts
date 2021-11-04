@@ -61,21 +61,22 @@ export default class Stream {
                 const { data: rawMasterData } = await axios.get(url, { responseType: 'arraybuffer' });
                 const masterData = await blurlToJson(Buffer.from(rawMasterData).slice(8));
   
-                let mainStream = masterData.playlists.find((p: { type: string; language: string; }) => p.type === 'master' && p.language === config.language);
+                let mainStream = masterData.playlists.find((p: { type: string; language: string; }) => p.type === 'master' && p.language.toUpperCase() === config.language.toUpperCase());
   
                 if(!mainStream) {
-                    config.language = 'en'
-                    mainStream = masterData.playlists.find((p: { type: string; language: string; }) => p.type === 'master' && p.language === config.language);
+                    mainStream = masterData.playlists.find((p: { type: string; language: string; }) => p.type === 'master' && p.language.toUpperCase() === 'EN');
                 }
 
-                const baseUrl = mainStream.url.replace(/master_.{2,10}\.m3u8/, '')
-                const audioStreamUrl = mainStream.data.match(/variant_[a-z]{2}_[A-Z]{2}_[0-9]{1}.m3u8/sg).pop();
+                const outputFolder = path.join(__dirname, '../final');
+
+                const baseUrl = mainStream.url.replace(/master_.{2,10}\.m3u8/, '');
+                const audioStreamUrl = mainStream.data.match(/variant_[A-Z]{2}_[a-z]{2}_[0-9]{1}.m3u8/sg).pop();
                 const audioStream = masterData.playlists.find((p: { type: string; rel_url: any; }) => p.type === 'variant' && p.rel_url === audioStreamUrl);
                 fs.writeFileSync(`${outputFolder}/audio.m3u8`, audioStream.data.split(/\n/)
                     .map((l: string) => (l.startsWith('#') || !l ? l : `${baseUrl}${l}`)).join('\n').replace('init_', `${baseUrl}init_`));
 
             
-                const file = `variant_[a-z]{2}_[A-Z]{2}_${res}.m3u8`
+                const file = `variant_[A-Z]{2}_[a-z]{2}_${res}.m3u8`
                 const regex = new RegExp(file);
                 const resolutionStreamUrl = mainStream.data.match(regex)[0];
                 const resolutionStream = masterData.playlists.find((p: { type: string; rel_url: any; }) => p.type === 'variant' && p.rel_url === resolutionStreamUrl);
@@ -84,15 +85,15 @@ export default class Stream {
       
                 await m3u8ToMp4(`${outputFolder}/content.m3u8`, `${outputFolder}/audio.m3u8`, `${outputFolder}/preview.mp4`);
 
-                const buffer = await fs.readFileSync(path.join(outputFolder, 'preview.mp4'))
+                const buffer = await fs.readFileSync(path.join(outputFolder, 'preview.mp4'));
                 try {
-                    fs.unlinkSync(path.join(outputFolder, 'preview.mp4'))
-                    fs.unlinkSync(path.join(outputFolder, 'audio.m3u8'))
-                    fs.unlinkSync(path.join(outputFolder, 'content.m3u8'))
+                    fs.unlinkSync(path.join(outputFolder, 'preview.mp4'));
+                    fs.unlinkSync(path.join(outputFolder, 'audio.m3u8'));
+                    fs.unlinkSync(path.join(outputFolder, 'content.m3u8'));
                 }
                 catch {}
 
-                return resolve(buffer)
+                return resolve(buffer);
             }
             catch(e) {
                 return reject(e);
