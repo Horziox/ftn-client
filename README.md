@@ -1,11 +1,15 @@
 # Fortnite Client
 
-### :warning: This repo is not yet existing on NPM and is in alpha phase !
+### :warning: This repo is in alpha phase !
+
+Install:
+`npm install ftn-client`
 
 ## Usage Example
+
 Download News Streams
 ```typescript
-import Client from '..path/to/index';
+import Client from 'ftn-client';
 import fs from 'fs';
 
 const client = new Client({
@@ -34,7 +38,7 @@ const client = new Client({
 
 Get token
 ```typescript
-import Client from '..path/to/index';
+import Client from 'ftn-client';
 
 const client = new Client({
   language: 'en', //default language
