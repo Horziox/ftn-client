@@ -53,7 +53,7 @@ export default class Stream {
         this.mute = data.videoMute;
     }
 
-    dowloadStream(config: DownloadConfig = { language: this.language, resolution: '1280x720'}): Promise<Buffer|Error> {
+    downloadStream(config: DownloadConfig = { language: this.language, resolution: '1280x720'}): Promise<Buffer|Error> {
         return new Promise(async (resolve, reject) => {
             const res = Resolution[config.resolution];
             const url = `https://fortnite-vod.akamaized.net/${this.uid}/master.blurl`;
