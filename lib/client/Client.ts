@@ -24,10 +24,27 @@ export default class Client {
     async start() {
         this.auth = new Auth(await Auth.prototype.generateClientCredentials());
 
-        this.BRNews = new BRNewsManager(this.auth, this.config);
-        this.STWNews = new STWNewsManager(this.config);
+        if(this.auth !== undefined) {
+            this.BRNews = new BRNewsManager(this.auth, this.config);
+            this.STWNews = new STWNewsManager(this.config);
 
-        await this.BRNews.getBrNews();
-        await this.STWNews.getStwNews();
+            await this.BRNews.getBrNews();
+            await this.STWNews.getStwNews();
+        }
+
+        //Refresh Token
+        setTimeout(async () => {
+            await this.start();
+        }, this.auth.expires_in * 1e3);
+
+        //Refresh Data
+        setInterval(async () => {
+            if(this.auth !== undefined) {
+                this.BRNews = new BRNewsManager(this.auth, this.config);
+                this.STWNews = new STWNewsManager(this.config);
+                await this.BRNews.getBrNews();
+                await this.STWNews.getStwNews();
+            }
+        }, 12e4);
     }
 }
