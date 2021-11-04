@@ -1,5 +1,7 @@
 # Fortnite Client
 
+### :warning: This repo is not yet existing on NPM and is in alpha phase !
+
 ## Usage Example
 Download News Streams
 ```typescript
