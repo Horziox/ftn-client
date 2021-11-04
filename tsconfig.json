@@ -1,11 +1,11 @@
 {
 	"compilerOptions": {
 		"strict": true,
-		"moduleResolution": "node",
-		"module": "commonjs",
-		"target": "es2021",
+		"moduleResolution": "Node",
+		"module": "CommonJS",
+		"target": "ES2021",
 		"declaration": true,
-		"sourceMap": true, //true
+		"sourceMap": true,
 		"removeComments": false,
 		"alwaysStrict": true,
 		"pretty": true,
@@ -16,9 +16,6 @@
 		"skipLibCheck": true,
 		"esModuleInterop": true
 	},
-	"lib": [
-		"es2021"
-	],
 	"exclude": [
 		"node_modules",
 		"dist",
