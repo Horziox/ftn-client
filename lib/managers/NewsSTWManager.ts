@@ -33,6 +33,8 @@ export default class STWNewsManager {
             this.id = data.news["jcr:baseVersion"];
             this.activeDate = data.news["_activeDate"];
             this.lastModified = data.news.lastModified;
+
+            resolve(this.news);
         })
     }
 }
