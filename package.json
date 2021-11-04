@@ -1,6 +1,6 @@
 {
   "name": "ftn-client",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "description": "A REST client for Fortnite which allows requesting game news, streams and service status from Epic Game's game servers.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,7 +9,10 @@
   },
   "keywords": [
     "fortnite",
-    "api"
+    "api",
+    "client",
+    "news",
+    "streams"
   ],
   "author": "Horziox",
   "license": "MIT",
