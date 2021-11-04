@@ -67,8 +67,6 @@ export default class Stream {
                     mainStream = masterData.playlists.find((p: { type: string; language: string; }) => p.type === 'master' && p.language.toUpperCase() === 'EN');
                 }
 
-                const outputFolder = path.join(__dirname, '../final');
-
                 const baseUrl = mainStream.url.replace(/master_.{2,10}\.m3u8/, '');
                 const audioStreamUrl = mainStream.data.match(/variant_[A-Z]{2}_[a-z]{2}_[0-9]{1}.m3u8/sg).pop();
                 const audioStream = masterData.playlists.find((p: { type: string; rel_url: any; }) => p.type === 'variant' && p.rel_url === audioStreamUrl);
