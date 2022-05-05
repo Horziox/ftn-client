@@ -1,22 +1,22 @@
 {
-	"compilerOptions": {
-		"strict": true,
-		"moduleResolution": "Node",
-		"module": "CommonJS",
-		"target": "ES2021",
-		"declaration": true,
-		"sourceMap": true,
-		"pretty": true,
-		"outDir": "dist",
-		"incremental": true,
-		"noEmitHelpers": true,
-		"importHelpers": true,
-		"skipLibCheck": true,
-		"esModuleInterop": true
-	},
-	"exclude": [
-		"node_modules",
-		"dist",
-		"examples"
-	]
+    "compilerOptions": {
+        "strict": true,
+        "moduleResolution": "node",
+        "module": "CommonJS",
+        "target": "ES2021",
+        "declaration": true,
+        "sourceMap": true,
+        "pretty": true,
+        "outDir": "dist",
+        "incremental": true,
+        "noEmitHelpers": true,
+        "importHelpers": true,
+        "skipLibCheck": true,
+        "esModuleInterop": true
+    },
+    "exclude": [
+        "node_modules",
+        "dist",
+        "examples"
+    ]
 }
