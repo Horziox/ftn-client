@@ -1,11 +1,9 @@
 import axios from 'axios';
-import fs from 'fs';
-import path from 'path';
 
 import * as endpoints from '../util/Endpoints';
+import { DownloadConfig } from '../struct/Stream';
 import { downloadStream } from '../util/Functions';
-import { LanguageType, RegionType, Resolution } from '../util/Ressources';
-import { DownloadConfig, blurlToJson, m3u8ToMp4, outputFolder } from '../struct/Stream';
+import { LanguageType, RegionType } from '../util/Ressources';
 
 import Auth from '../struct/Auth';
 import BRNews from '../struct/NewsBR';

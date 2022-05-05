@@ -3,11 +3,9 @@ import zlib from 'zlib';
 import { exec } from 'child_process';
 
 import { downloadStream } from '../util/Functions';
+import { ResolutionsType, LanguageType } from '../util/Ressources';
 
 export const outputFolder = path.join(__dirname, '../final');
-
-import { ClientConfig } from '../client/Client';
-import { ResolutionsType, LanguageType } from '../util/Ressources';
 
 export interface DownloadConfig {
     language: LanguageType,
@@ -39,7 +37,7 @@ export default class Stream {
     fullScreen: boolean;
     mute: boolean;
 
-    constructor(config: ClientConfig, data: any) {
+    constructor(config: { language: LanguageType }, data: any) {
         this.language = config.language;
 
         //Stream Object
