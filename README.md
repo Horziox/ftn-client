@@ -57,7 +57,7 @@ const client = new Client();
 })()
 ```
 
-*A more detailed example in javascript is present in the examples folder*
+*More detailed examples in javascript are presents in the examples folder*
 
 ## Documentation
 Documentation available soon...
