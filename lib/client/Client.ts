@@ -6,6 +6,7 @@ import { downloadStream } from '../util/Functions';
 import { LanguageType, RegionType } from '../util/Ressources';
 
 import Auth from '../struct/Auth';
+import Blog from '../struct/Blog';
 import BRNews from '../struct/NewsBR';
 import STWNews from '../struct/NewsSTW';
 
@@ -89,5 +90,45 @@ export default class Client {
         return new Promise(async (resolve) => {
             resolve(await downloadStream(id, config));
         });
+    }
+
+    getBlogs(config: { language: LanguageType, offset: number, max: number } = { language: this.config.language, offset: 0, max: 10 }): Promise<{ blogsCount: number, blogsTotal: number, blogs: Blog[] }> {
+        return new Promise(async resolve => {
+            await axios({
+                method: 'GET',
+                url: `https://www.epicgames.com/fortnite/api/blog/getPosts?postsPerPage=${config.max}&offset=${config.offset}&locale=${config.language}&rootPageSlug=blog`
+            })
+            .then(res => {
+                let blogs = [];
+                for(const blog of res.data.blogList) {
+                    blogs.push(new Blog(blog));
+                }
+                resolve({
+                    blogsCount: res.data.postCount,
+                    blogsTotal: res.data.categoryTotals.all,
+                    blogs
+                });
+            })
+        })
+    }
+
+    getCompetitiveBlogs(config: { language: LanguageType, offset: number, max: number } = { language: this.config.language, offset: 0, max: 10 }): Promise<{ blogsCount: number, blogsTotal: number, blogs: Blog[] }> {
+        return new Promise(async resolve => {
+            await axios({
+                method: 'GET',
+                url: `https://www.epicgames.com/competitive/api/blog/getPosts?postsPerPage=${config.max}&offset=${config.offset}&locale=${config.language}&rootPageSlug=news`
+            })
+            .then(res => {
+                let blogs = [];
+                for(const blog of res.data.blogList) {
+                    blogs.push(new Blog(blog));
+                }
+                resolve({
+                    blogsCount: res.data.postCount,
+                    blogsTotal: res.data.categoryTotals.all,
+                    blogs
+                });
+            })
+        })
     }
 }
