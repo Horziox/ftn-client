@@ -24,7 +24,7 @@ const client = new Client({
 
 (async () => {
   // Start the client
-  await client.start()
+  await client.start();
   
   // Get BR News
   const BRnews = client.BRNews;
@@ -49,7 +49,7 @@ const client = new Client();
 
 (async () => {
   // Start the client
-  await client.start()
+  await client.start();
   
   // Get client Auth an log the EG1 token
   const auth = client.auth;
