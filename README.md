@@ -1,5 +1,11 @@
 # Fortnite Client
 
+<p>
+  <a href="https://www.npmjs.com/package/ftn-client"><img src="https://img.shields.io/npm/v/ftn-client.svg?maxAge=3600" alt="npm version" /></a>
+  <a href="https://www.npmjs.com/package/ftn-client"><img src="https://img.shields.io/npm/dt/ftn-client.svg?maxAge=3600" alt="npm downloads" /></a>
+  <a href="https://github.com/Horziox/ftn-client/actions"><img src="https://github.com/Horziox/ftn-client/actions/workflows/codeql-analysis.yml/badge.svg" alt="CodeQL" /></a>
+</p>
+
 #### :warning: This repo is in alpha phase !
 
 Install: `npm install ftn-client`
